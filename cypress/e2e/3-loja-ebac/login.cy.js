@@ -47,15 +47,25 @@ it('deve fazer login com sucesso - Usando massa de dados', () => {
     cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, vagnerteste.teste (não é vagnerteste.teste? Sair)')
 })
 
-    it.only('deve fazer login com sucesso - Usando fixture', () => {
+    it('deve fazer login com sucesso - Usando fixture', () => {
         cy.fixture('perfil').then(dados => {
-            cy.get('#username').type(dados.usuario , {log:false})
-            cy.get('#password').type(dados.senha , { log: false })
+            cy.get('#username').type(dados.usuario, {log: false})
+            cy.get('#password').type(dados.senha , {log:false})
             cy.get('.woocommerce-form > .button').click()
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, vagnerteste.teste (não é vagnerteste.teste? Sair)') 
 
         })
 })
+
+it.only('deve fazer login com sucesso - usando Comandos customizados', () => {
+    cy.login('vagnerteste.teste@hotmail.com', 'teste@123')
+    cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, vagnerteste.teste (não é vagnerteste.teste? Sair)')
+})
+
+
+
 });
+
+
 
 
